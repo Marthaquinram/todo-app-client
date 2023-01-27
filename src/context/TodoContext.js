@@ -15,6 +15,10 @@ export const todosReducer = (state, action) => {
         //single new workout add to array
         todos: [action.payload, ...state.todos]
       }
+    case 'DELETE_TODO':
+      return {
+        todos: state.todos.filter(t => t._id !== action.payload._id)
+      }
     default:
       return state
   }
