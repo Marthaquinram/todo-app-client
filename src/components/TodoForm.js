@@ -9,7 +9,7 @@ const TodoForm = () => {
   const [text, setText] = useState('')
   const [completed, setCompleted] = useState('')
   const [error, setError] = useState(null)
-
+  const [emptyFields, setEmptyFields] = useState([])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -28,12 +28,13 @@ const TodoForm = () => {
 
     if (!response.ok) {
       setError(json.error)
+      setEmptyFields(json.emptyFields)
     }
     if (response.ok) {
+      setEmptyFields([])
+      setError(null)
       setText('')
       setCompleted('')
-      setError(null)
-      console.log('new todo added', json)
       dispatch({ type: 'CREATE_TODOS', payload: json })
     }
   }
@@ -48,12 +49,15 @@ const TodoForm = () => {
         type="text"
         onChange={(e) => setText(e.target.value)}
         value={text}
+        className={emptyFields.includes('text') ? 'error' : ''}
       />
+
       <label>Completed:</label>
       <input
         type="text"
         onChange={(e) => setCompleted(e.target.value)}
         value={completed}
+        className={emptyFields.includes('completed') ? 'error' : ''}
       />
 
       <button>Add ToDo</button>
