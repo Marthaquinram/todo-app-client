@@ -4,7 +4,8 @@ import LogoutButton from "./auth/LogoutButton";
 import Profile from "./auth/Profile";
 import { useAuth0 } from "@auth0/auth0-react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './index.css';
+import './index.css'
+
 
 //pages & components
 import Home from "./pages/Home";
@@ -17,7 +18,7 @@ function App() {
   const { isLoading, error } = useAuth0();
 
   return (
-    <main className="column">
+    <>
       <div className="App">
         <BrowserRouter>
           <Navbar />
@@ -40,7 +41,8 @@ function App() {
           <Profile />
         </>
       )}
-    </main>
+    </>
+
 
   );
 }
