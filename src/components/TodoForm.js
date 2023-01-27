@@ -1,10 +1,10 @@
 import { useState } from "react"
-import { useTodosContext } from '../hooks/useTodoContext'
+import { useTodosContext } from '../hooks/useTodoContext';
 
 
 const TodoForm = () => {
   // create state for each of the different properties of the todo
-  const { dispatch } = useTodosContext()
+  const { dispatch } = useTodosContext();
 
   const [text, setText] = useState('')
   const [completed, setCompleted] = useState('')
